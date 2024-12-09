@@ -9,12 +9,14 @@ const status = async (req, resp) => {
     try {
         if (!userName || !status) {
             resp.status(401).json({ message: 'give valid information' });
+            return;
         }
 
         const isExists = await user.exists({ userName });
 
         if (!isExists) {
             resp.status(401).json({ message: 'not a valid userName' });
+            return;
         }
 
         await user.findOneAndUpdate(

@@ -16,6 +16,24 @@ const getcontacts = async (req, resp) => {
                 userName
             })
 
+            // let DetailedContacts = [];
+            // console.log("before looping")
+
+            // for (let i = 0; i < contacts.length; i++) {
+            //     console.log("looping")
+            //     let isUser = await user.exists({ userName: contacts[i] });
+            //     console.log(contacts[i]);
+            //     if (isUser) {
+            //         let dContact = await user.find({ userName: contacts[i] });
+            //         DetailedContacts.push(dContact);
+            //     }else{
+            //         console.log("else")
+            //     }
+            // }
+            // console.log("After looping")
+
+
+
             resp.status(201).json({ cont: contacts.contacts })
         }
 

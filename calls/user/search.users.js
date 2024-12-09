@@ -5,7 +5,7 @@ const searchUser = async (req, resp) => {
 
     try {
 
-        let userName = req.query.username || " ";
+        let userName = req.query.username;
         let searchedUser = await user.find({
             $or: [
                 { userName: { $regex: userName, $options: 'i' } },
@@ -15,8 +15,12 @@ const searchUser = async (req, resp) => {
         }).limit(5);
 
         if(searchedUser !== null){
+            console.log("userName: ", userName);
+            console.log("Data" , searchUser);
             resp.status(201).json({ data: searchedUser, find: true });    
         }else{
+            console.log("userName: ", userName);
+            console.log("Data" , searchUser);
             resp.status(201).json({ data: [], find: false, message: "user not found" });
         }
 

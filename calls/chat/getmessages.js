@@ -6,12 +6,12 @@ const getmessage = async (req, resp) => {
         const chatId = req.query.chatid;
 
         if (!chatId) {
-            resp.status(201).json({ messages, message: 'give chatid' });
+            resp.status(201).json({ message: 'give chatid' });
         } else {
             if (await message.exists({ chatId })) {
                 let messages = await message.find({ chatId });
-
-                resp.status(201).json({ messages, message: 'chat found' })
+                console.log("messages : ", messages)
+                resp.status(201).json({ messages, tick: 'got it' })
             } else {
                 resp.status(201).json({ message: 'empty message' })
             }

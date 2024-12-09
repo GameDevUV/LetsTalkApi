@@ -6,12 +6,13 @@ const sendself = async (req, resp) => {
     try {
         let userName = req.query.username;
 
-        
-        let isExisting = user.exists({ userName });
+        let isExisting = await user.exists({ userName });
+
         if (isExisting) {
             let searchedUser = await user.find({ userName })
             console.log("searche user: ", searchedUser);
-            resp.status(201).json({ user: searchedUser });
+            console.log(searchedUser[0].contacts);
+            resp.status(201).json({ user: searchedUser[0].contacts });
         }else{
             resp.status(401).json({ status : "not found" });
         }

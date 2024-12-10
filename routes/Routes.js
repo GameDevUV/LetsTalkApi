@@ -19,6 +19,7 @@ const status = require('../calls/user/status.user');
 const getcontacts = require('../calls/user/getcontacts.user');
 const selected = require('../calls/user/selected.users');
 const check = require('../calls/user/check.user');
+const getGroups = require('../calls/chat/group/getGroups.chat');
 
 // operations on user
 routes.route('/user/selfserve').get(sendself);
@@ -39,5 +40,6 @@ routes.route('/chat/getmessage').get(getmessage);
 routes.route('/chat/addtochat').put(addtochat);
 routes.route('/chat/removefromchat').patch(removefromchat);
 routes.route('/chat/deletemessage').delete(deletemessage);
+routes.route('/chat/getGroup').get(getGroups);
 
 module.exports = routes;

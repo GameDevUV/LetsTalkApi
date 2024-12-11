@@ -13,15 +13,26 @@ const addtochat = async (req, resp) => {
             const userExists = await user.exists({ userName })
 
             if (userExists) {
-                resp.status(201).json({ message: "user added" });
+                const userIn = await chat.find({
+                    isGroupChat : true,
+                    chatId,
+                    participants: userName
+                })
+                console.log(userIn)
+                if (userIn.length === 0) {
 
-                await chat.findOneAndUpdate({
-                    chatId
-                },{
-                    $addToSet : {
-                        participants: userName
-                    }
-                }, {new: true})
+                    await chat.findOneAndUpdate({
+                        chatId
+                    }, {
+                        $addToSet: {
+                            participants: userName
+                        }
+                    }, { new: true })
+
+                } else {
+                    resp.json({message : " hii"})
+                }
+                resp.json({message : " hii"})
 
             } else {
                 resp.status(400).json({ message: "invalid user" });
@@ -29,7 +40,7 @@ const addtochat = async (req, resp) => {
         }
 
     } catch (e) {
-        console.log('error', e);
+        console.log('error here', e);
     }
 }
 

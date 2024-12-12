@@ -6,9 +6,6 @@ const io = require('socket.io-client')
 const sendmessage = async (req, resp) => {
     console.log('hii by send message');
     
-    let socket = io.connect('http://localhost:4000', {reconnect: true});
-    console.log("hii by selected user");
-
     try {
         const { senderId, content, toUserName } = req.body;
 
@@ -47,7 +44,6 @@ const sendmessage = async (req, resp) => {
                     content
                 })
                 let savedMessage = await msg.save();
-                // socket.to(chatId).emit('newMessage', savedMessage)
                 resp.status(201).json({ message: 'sent successfully' });
             }
 

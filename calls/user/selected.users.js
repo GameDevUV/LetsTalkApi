@@ -2,6 +2,7 @@ const user = require('../../Modal/user.models');
 
 
 const selected = async (req, resp) => {
+    console.log("hii by selected user")
     try {
         const { userName } = req.query;
         if (!(userName) || userName === null) {
